@@ -1,0 +1,131 @@
+
+[
+  {
+    "name": "Python",
+    "category": "Programming",
+    "description": "Programming fundamentals, scripting, and automation.",
+    "difficulty": "beginner",
+    "market_demand": 0.95,
+    "aliases": ["python programming", "py"]
+  },
+  {
+    "name": "Java",
+    "category": "Programming",
+    "description": "Object-oriented programming and Java application development.",
+    "difficulty": "beginner",
+    "market_demand": 0.85,
+    "aliases": ["java programming"]
+  },
+  {
+    "name": "C++",
+    "category": "Programming",
+    "description": "Object-oriented programming, memory management, and algorithms.",
+    "difficulty": "intermediate",
+    "market_demand": 0.8,
+    "aliases": ["cpp", "cplusplus"]
+  },
+  {
+    "name": "JavaScript",
+    "category": "Web Development",
+    "description": "Programming for interactive web applications.",
+    "difficulty": "beginner",
+    "market_demand": 0.95,
+    "aliases": ["js", "javascript programming"]
+  },
+  {
+    "name": "HTML",
+    "category": "Web Development",
+    "description": "Semantic structure of web pages.",
+    "difficulty": "beginner",
+    "market_demand": 0.85,
+    "aliases": ["html5"]
+  },
+  {
+    "name": "CSS",
+    "category": "Web Development",
+    "description": "Styling, layouts, and responsive web interfaces.",
+    "difficulty": "beginner",
+    "market_demand": 0.85,
+    "aliases": ["css3"]
+  },
+  {
+    "name": "React",
+    "category": "Web Development",
+    "description": "Component-based development of web interfaces.",
+    "difficulty": "intermediate",
+    "market_demand": 0.9,
+    "aliases": ["reactjs", "react.js"]
+  },
+  {
+    "name": "FastAPI",
+    "category": "Backend Development",
+    "description": "Building Python APIs with request validation.",
+    "difficulty": "intermediate",
+    "market_demand": 0.8,
+    "aliases": ["fast api"]
+  },
+  {
+    "name": "SQL",
+    "category": "Database",
+    "description": "Relational databases and querying.",
+    "difficulty": "beginner",
+    "market_demand": 0.9,
+    "aliases": ["structured query language"]
+  },
+  {
+    "name": "Git",
+    "category": "Developer Tools",
+    "description": "Version control and collaborative development.",
+    "difficulty": "beginner",
+    "market_demand": 0.9,
+    "aliases": ["git version control"]
+  },
+  {
+    "name": "Linux",
+    "category": "Cybersecurity",
+    "description": "Command-line tools, permissions, and system administration.",
+    "difficulty": "beginner",
+    "market_demand": 0.85,
+    "aliases": ["linux administration"]
+  },
+  {
+    "name": "Computer Networking",
+    "category": "Cybersecurity",
+    "description": "TCP/IP, DNS, HTTP, routing, and network troubleshooting.",
+    "difficulty": "beginner",
+    "market_demand": 0.9,
+    "aliases": ["networking", "computer networks"]
+  },
+  {
+    "name": "Cybersecurity Fundamentals",
+    "category": "Cybersecurity",
+    "description": "Security principles, threats, and defensive practices.",
+    "difficulty": "beginner",
+    "market_demand": 0.9,
+    "aliases": ["cybersecurity", "cyber security", "infosec"]
+  },
+  {
+    "name": "OWASP Top 10",
+    "category": "Cybersecurity",
+    "description": "Understanding common web application security risks.",
+    "difficulty": "intermediate",
+    "market_demand": 0.8,
+    "aliases": ["owasp"]
+  },
+  {
+    "name": "Docker",
+    "category": "DevOps",
+    "description": "Containerizing and running applications.",
+    "difficulty": "intermediate",
+    "market_demand": 0.8,
+    "aliases": ["containerization"]
+  },
+  {
+    "name": "Machine Learning",
+    "category": "AI",
+    "description": "Training and evaluating predictive models.",
+    "difficulty": "intermediate",
+    "market_demand": 0.9,
+    "aliases": ["ml"]
+  }
+]

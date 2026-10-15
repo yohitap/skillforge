@@ -1,0 +1,15 @@
+
+[
+  {"skill": "HTML", "prerequisite": null},
+  {"skill": "CSS", "prerequisite": "HTML"},
+  {"skill": "JavaScript", "prerequisite": "HTML"},
+  {"skill": "React", "prerequisite": "JavaScript"},
+  {"skill": "FastAPI", "prerequisite": "Python"},
+  {"skill": "SQL", "prerequisite": null},
+  {"skill": "Docker", "prerequisite": "Linux"},
+  {"skill": "Computer Networking", "prerequisite": null},
+  {"skill": "Linux", "prerequisite": null},
+  {"skill": "Cybersecurity Fundamentals", "prerequisite": "Computer Networking"},
+  {"skill": "OWASP Top 10", "prerequisite": "Cybersecurity Fundamentals"},
+  {"skill": "Machine Learning", "prerequisite": "Python"}
+]

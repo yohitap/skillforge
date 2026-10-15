@@ -1,0 +1,48 @@
+
+[
+  {
+    "name": "Python Developer",
+    "description": "Develops Python applications, APIs, and automation tools.",
+    "skills": [
+      {"name": "Python", "importance": 1.0},
+      {"name": "SQL", "importance": 0.8},
+      {"name": "Git", "importance": 0.7},
+      {"name": "FastAPI", "importance": 0.8},
+      {"name": "Docker", "importance": 0.5}
+    ]
+  },
+  {
+    "name": "Full-Stack Developer",
+    "description": "Builds frontend interfaces and backend services.",
+    "skills": [
+      {"name": "HTML", "importance": 0.7},
+      {"name": "CSS", "importance": 0.7},
+      {"name": "JavaScript", "importance": 1.0},
+      {"name": "React", "importance": 0.9},
+      {"name": "SQL", "importance": 0.7},
+      {"name": "Git", "importance": 0.7}
+    ]
+  },
+  {
+    "name": "Cybersecurity Analyst",
+    "description": "Investigates threats, analyzes systems, and supports defensive security.",
+    "skills": [
+      {"name": "Linux", "importance": 0.9},
+      {"name": "Computer Networking", "importance": 1.0},
+      {"name": "Cybersecurity Fundamentals", "importance": 1.0},
+      {"name": "OWASP Top 10", "importance": 0.8},
+      {"name": "Python", "importance": 0.7}
+    ]
+  },
+  {
+    "name": "Machine Learning Engineer",
+    "description": "Develops, evaluates, and deploys machine learning applications.",
+    "skills": [
+      {"name": "Python", "importance": 1.0},
+      {"name": "SQL", "importance": 0.7},
+      {"name": "Machine Learning", "importance": 1.0},
+      {"name": "Git", "importance": 0.7},
+      {"name": "Docker", "importance": 0.6}
+    ]
+  }
+]
