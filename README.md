@@ -113,44 +113,6 @@ It helps users understand their current capabilities, identify missing skills, c
 - Docker Compose
 - Nginx
 
-## Project Architecture
-
-```text
-skillforge/
-├── backend/
-│   ├── app/
-│   │   ├── ai/
-│   │   ├── core/
-│   │   ├── integrations/
-│   │   ├── models/
-│   │   ├── routes/
-│   │   ├── schemas/
-│   │   ├── seed/
-│   │   └── services/
-│   ├── alembic/
-│   ├── tests/
-│   ├── Dockerfile
-│   └── requirements.txt
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── context/
-│   │   ├── hooks/
-│   │   ├── layouts/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   └── utils/
-│   ├── Dockerfile
-│   └── package.json
-├── docs/
-├── docker-compose.yml
-├── .env.example
-├── .gitignore
-├── LICENSE
-└── README.md
-```
-
 ## Getting Started
 
 ### Prerequisites
