@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BrainCircuit, Eye, EyeOff, ArrowRight } from "lucide-react";
-import authService from "../services/authService";
+import { useAuth } from "../context/AuthContext";
 
 export default function Register() {
+  const { register } = useAuth();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -43,18 +44,13 @@ export default function Register() {
     try {
       setLoading(true);
 
-      await authService.register({
+      await register({
         full_name: form.full_name.trim(),
         email: form.email.trim(),
         password: form.password,
       });
 
-      // Registration may or may not issue a token, depending on the backend.
-      if (authService.isAuthenticated()) {
-        navigate("/dashboard", { replace: true });
-      } else {
-        navigate("/login", { replace: true });
-      }
+      navigate("/dashboard", { replace: true });
     } catch (err) {
       setError(err.message || "Unable to create your account.");
     } finally {

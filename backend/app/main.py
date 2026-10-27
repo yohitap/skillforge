@@ -7,26 +7,19 @@ from app.core.database import Base, engine
 
 # Import every model so SQLAlchemy registers its tables.
 from app.models import (  # noqa: F401
-    assessment,
-    assessment_result,
-    activity,
-    certification,
-    evidence,
-    github_repository,
-    job,
-    job_skill,
-    learning_resource,
-    notification,
-    progress,
-    project,
-    resume,
-    roadmap,
-    role,
-    skill,
-    skill_alias,
-    skill_dependency,
-    user,
-    user_skill,
+    Assessment,
+    Evidence,
+    Job,
+    JobSkill,
+    Progress,
+    Project,
+    Roadmap,
+    Role,
+    Skill,
+    SkillAlias,
+    SkillDependency,
+    User,
+    UserSkill,
 )
 
 from app.routes import (
@@ -53,11 +46,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=getattr(
-        settings,
-        "CORS_ORIGINS",
-        ["http://localhost:5173"],
-    ),
+    allow_origins=settings.CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -66,6 +55,12 @@ app.add_middleware(
 # Convenient for local development. Use Alembic migrations in production.
 if getattr(settings, "AUTO_CREATE_TABLES", True):
     Base.metadata.create_all(bind=engine)
+
+    from app.core.database import SessionLocal
+    from app.seed_loader import seed_catalog
+
+    with SessionLocal() as db:
+        seed_catalog(db)
 
 routers = [
     auth.router,

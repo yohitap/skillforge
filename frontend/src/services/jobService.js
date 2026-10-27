@@ -2,7 +2,11 @@ import api from "./api";
 
 const jobService = {
   getAll(params = {}) {
-    return api.get("/jobs", params);
+    return api.get("/jobs/", params);
+  },
+
+  getJobs(params = {}) {
+    return this.getAll(params);
   },
 
   getById(id) {
@@ -17,7 +21,7 @@ const jobService = {
   },
 
   analyzeSkills(id) {
-    return api.post(`/jobs/${id}/analyze`, {});
+    return api.get(`/recommendations/skill-gaps/${id}`);
   },
 
   compare(jobIds) {
@@ -27,7 +31,7 @@ const jobService = {
   },
 
   getRecommended(params = {}) {
-    return api.get("/jobs/recommended", params);
+    return api.get("/jobs/", params);
   },
 };
 

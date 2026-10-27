@@ -2,7 +2,24 @@ import api from "./api";
 
 const skillService = {
   getAll(params = {}) {
-    return api.get("/skills", params);
+    return api.get("/skills/", params);
+  },
+
+  async getSkills(params = {}) {
+    try {
+      const mine = await this.getMySkills();
+      if (Array.isArray(mine) && mine.length > 0) {
+        return mine.map((item) => ({
+          id: item.skill_id ?? item.id,
+          ...item,
+        }));
+      }
+    } catch {
+      // fall through to catalog
+    }
+
+    const catalog = await this.getAll(params);
+    return catalog?.items ?? catalog ?? [];
   },
 
   getById(id) {

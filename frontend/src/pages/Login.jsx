@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BrainCircuit, Eye, EyeOff, ArrowRight } from "lucide-react";
-import authService from "../services/authService";
+import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +26,7 @@ export default function Login() {
 
     try {
       setLoading(true);
-      await authService.login({
+      await login({
         email: form.email.trim(),
         password: form.password,
       });

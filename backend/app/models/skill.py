@@ -50,3 +50,16 @@ class Skill(Base):
         back_populates="skill",
         cascade="all, delete-orphan",
     )
+
+    aliases = relationship(
+        "SkillAlias",
+        back_populates="skill",
+        cascade="all, delete-orphan",
+    )
+
+    dependencies = relationship(
+        "SkillDependency",
+        foreign_keys="SkillDependency.skill_id",
+        back_populates="skill",
+        cascade="all, delete-orphan",
+    )

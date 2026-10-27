@@ -1,8 +1,11 @@
-const API_BASE_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:8000/api/v1";
+const API_BASE_URL = (
+  import.meta.env.VITE_API_URL || "http://localhost:8000/api"
+).replace(/\/+$/, "");
+
+export const TOKEN_KEY = "skillforge_access_token";
 
 async function request(endpoint, options = {}) {
-  const token = localStorage.getItem("access_token");
+  const token = localStorage.getItem(TOKEN_KEY);
 
   const headers = {
     Accept: "application/json",
@@ -14,8 +17,10 @@ async function request(endpoint, options = {}) {
   }
 
   const isFormData = options.body instanceof FormData;
+  const isUrlEncoded =
+    options.body instanceof URLSearchParams;
 
-  if (options.body && !isFormData) {
+  if (options.body && !isFormData && !isUrlEncoded) {
     headers["Content-Type"] = "application/json";
   }
 
@@ -75,7 +80,10 @@ const api = {
   post: (endpoint, body) =>
     request(endpoint, {
       method: "POST",
-      body: body instanceof FormData ? body : JSON.stringify(body ?? {}),
+      body:
+        body instanceof FormData || body instanceof URLSearchParams
+          ? body
+          : JSON.stringify(body ?? {}),
     }),
 
   put: (endpoint, body) =>

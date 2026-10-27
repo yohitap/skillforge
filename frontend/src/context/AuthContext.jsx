@@ -8,6 +8,7 @@ import {
 } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { TOKEN_KEY } from "../services/api";
 
 const AuthContext = createContext(null);
 
@@ -15,7 +16,6 @@ const API_URL = (
   import.meta.env.VITE_API_URL || "http://localhost:8000/api"
 ).replace(/\/+$/, "");
 
-const TOKEN_KEY = "skillforge_access_token";
 const USER_KEY = "skillforge_user";
 
 function getStoredUser() {
@@ -40,6 +40,7 @@ function saveSession(token, user) {
 function clearSession() {
   localStorage.removeItem(TOKEN_KEY);
   localStorage.removeItem(USER_KEY);
+  localStorage.removeItem("access_token");
 }
 
 export function AuthProvider({ children }) {
@@ -76,12 +77,10 @@ export function AuthProvider({ children }) {
       const currentUser = response.data.user ?? response.data;
       setUser(currentUser);
       localStorage.setItem(USER_KEY, JSON.stringify(currentUser));
-    } catch {
-      // Keep the stored session for a temporary network failure.
-      // A 401 means the token is invalid or expired.
+    } catch (error) {
       const cachedUser = getStoredUser();
 
-      if (!cachedUser) {
+      if (error.response?.status === 401 || !cachedUser) {
         clearSession();
         setUser(null);
       }
@@ -97,7 +96,7 @@ export function AuthProvider({ children }) {
   const login = useCallback(async ({ email, password }) => {
     try {
       const response = await axios.post(
-        `${API_URL}/auth/login`,
+        `${API_URL}/auth/login/json`,
         { email, password },
         { timeout: 15000 }
       );
@@ -148,11 +147,15 @@ export function AuthProvider({ children }) {
   }, []);
 
   const register = useCallback(
-    async ({ email, password, full_name }) => {
+    async ({ email, password, full_name, name }) => {
       try {
         const response = await axios.post(
           `${API_URL}/auth/register`,
-          { email, password, full_name },
+          {
+            email,
+            password,
+            name: (name ?? full_name ?? "").trim(),
+          },
           { timeout: 15000 }
         );
 
@@ -160,41 +163,33 @@ export function AuthProvider({ children }) {
         const token = data.access_token ?? data.token;
         let currentUser = data.user ?? data.profile ?? null;
 
-        if (token) {
-          saveSession(token, currentUser);
-
-          if (!currentUser) {
-            try {
-              const profileResponse = await axios.get(
-                `${API_URL}/auth/me`,
-                {
-                  headers: {
-                    Authorization: `Bearer ${token}`
-                  },
-                  timeout: 10000
-                }
-              );
-
-              currentUser =
-                profileResponse.data.user ?? profileResponse.data;
-
-              saveSession(token, currentUser);
-            } catch {
-              clearSession();
-            }
-          }
-
-          if (currentUser) {
-            setUser(currentUser);
-            toast.success("Your account has been created!");
-            return currentUser;
-          }
+        if (!token) {
+          toast.success("Account created. Please log in.");
+          return data;
         }
 
-        // Some APIs create the account without returning a token.
-        toast.success("Account created. Please log in.");
-        window.location.assign("/login");
-        return data;
+        saveSession(token, currentUser);
+
+        if (!currentUser) {
+          const profileResponse = await axios.get(
+            `${API_URL}/auth/me`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`
+              },
+              timeout: 10000
+            }
+          );
+
+          currentUser =
+            profileResponse.data.user ?? profileResponse.data;
+
+          saveSession(token, currentUser);
+        }
+
+        setUser(currentUser);
+        toast.success("Your account has been created!");
+        return currentUser;
       } catch (error) {
         const message =
           error.response?.data?.detail ||

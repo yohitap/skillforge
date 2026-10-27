@@ -1,48 +1,25 @@
 import { Outlet, Navigate } from "react-router-dom";
-import { useContext, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
+import Loading from "../components/Loading";
 
 export default function DashboardLayout() {
-  const auth = useContext(AuthContext);
+  const { user, loading } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  if (auth && auth.loading) {
+  if (loading) {
     return (
-      <div className="sf-layout-loading">
-        <div className="sf-layout-spinner" />
-        <p>Loading your workspace...</p>
-
-        <style>{`
-          .sf-layout-loading {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-            color: #b8ed8a;
-            background: #0c100e;
-            font-family: Inter, system-ui, sans-serif;
-          }
-          .sf-layout-spinner {
-            width: 30px;
-            height: 30px;
-            border: 3px solid #28342a;
-            border-top-color: #b8ed8a;
-            border-radius: 50%;
-            animation: sf-spin 0.8s linear infinite;
-          }
-          @keyframes sf-spin {
-            to { transform: rotate(360deg); }
-          }
-        `}</style>
-      </div>
+      <Loading
+        message="Loading your workspace..."
+        fullScreen
+        size={30}
+      />
     );
   }
 
-  if (auth && !auth.user) {
+  if (!user) {
     return <Navigate to="/login" replace />;
   }
 

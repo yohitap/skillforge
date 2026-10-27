@@ -19,6 +19,10 @@ def get_dashboard(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
+    return _build_dashboard_payload(current_user, db)
+
+
+def _build_dashboard_payload(current_user: User, db: Session):
     skills = db.query(UserSkill).filter(
         UserSkill.user_id == current_user.id
     ).all()
@@ -79,6 +83,19 @@ def get_dashboard(
             "progress_percentage": round(completion, 2),
         })
 
+    progress_percentage = 0.0
+    if roadmap_summaries:
+        progress_percentage = round(
+            sum(item["progress_percentage"] for item in roadmap_summaries)
+            / len(roadmap_summaries),
+            2,
+        )
+    elif tasks:
+        progress_percentage = round(
+            (completed_tasks / len(tasks)) * 100,
+            2,
+        )
+
     return {
         "user": {
             "id": current_user.id,
@@ -96,6 +113,55 @@ def get_dashboard(
             "roadmaps": len(roadmaps),
             "tasks_completed": completed_tasks,
             "total_tasks": len(tasks),
+            "progress_percentage": progress_percentage,
         },
         "roadmaps": roadmap_summaries,
+    }
+
+
+@router.get("/stats")
+def get_dashboard_stats(
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    payload = _build_dashboard_payload(current_user, db)
+    return payload["summary"]
+
+
+@router.get("/activity")
+def get_dashboard_activity(
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    tasks = (
+        db.query(Progress)
+        .filter(Progress.user_id == current_user.id)
+        .order_by(Progress.id.desc())
+        .limit(20)
+        .all()
+    )
+
+    return {
+        "items": [
+            {
+                "id": task.id,
+                "title": task.task_title,
+                "status": task.status,
+                "completion_percentage": task.completion_percentage,
+                "roadmap_id": task.roadmap_id,
+            }
+            for task in tasks
+        ]
+    }
+
+
+@router.get("/progress")
+def get_dashboard_progress(
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    payload = _build_dashboard_payload(current_user, db)
+    return {
+        "summary": payload["summary"],
+        "roadmaps": payload["roadmaps"],
     }

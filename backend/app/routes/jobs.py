@@ -84,6 +84,26 @@ def list_jobs(
     }
 
 
+
+
+@router.get("/search")
+def search_jobs(
+    q: str | None = None,
+    search: str | None = None,
+    role_id: int | None = None,
+    limit: int = Query(default=50, ge=1, le=100),
+    offset: int = Query(default=0, ge=0),
+    db: Session = Depends(get_db),
+):
+    term = q or search
+    return list_jobs(
+        search=term,
+        role_id=role_id,
+        limit=limit,
+        offset=offset,
+        db=db,
+    )
+
 @router.get("/{job_id}")
 def get_job(job_id: int, db: Session = Depends(get_db)):
     job = (
