@@ -22,50 +22,20 @@ It helps users understand their current capabilities, identify missing skills, c
 ## Key Features
 
 ### 1. Intelligent Skill Mapping
-- Maintain a structured inventory of technical and professional skills.
-- Normalize different names and aliases for the same skill.
-- Explore relationships and dependencies between skills.
-- Track proficiency and skill development.
 
 ### 2. Skill Gap Analysis
-- Compare existing skills with target job or career-role requirements.
-- Identify missing or underdeveloped skills.
-- Prioritize learning based on relevance and importance.
-- Understand why particular skills matter for a target role.
 
 ### 3. Evidence-Based Skill Profiles
-- Connect skills to projects, certifications, assessments, and other evidence.
-- Build a more informative profile than a list of self-declared skills.
-- Track practical accomplishments over time.
 
 ### 4. Resume Analysis
-- Upload a resume for skill extraction and analysis.
-- Identify relevant skills and experience.
-- Compare resume content with target-role requirements.
-- Discover opportunities to improve skill coverage.
 
 ### 5. GitHub Project Analysis
-- Connect a GitHub account or public repositories.
-- Analyze repository metadata and project technologies.
-- Associate project evidence with relevant skills.
-- Discover areas where additional practical work may help.
 
 ### 6. Personalized Learning Roadmaps
-- Organize skill gaps into learning milestones.
-- Explore learning resources and project recommendations.
-- Follow a structured path toward a selected career role.
-- Monitor progress toward learning goals.
 
 ### 7. Assessments and Progress Tracking
-- Evaluate knowledge through assessments.
-- Track learning progress and recorded achievements.
-- Review activity and skill development over time.
 
 ### 8. Career Insights and Recommendations
-- Explore job requirements and role comparisons.
-- Identify skills relevant to target opportunities.
-- Receive explanations for recommendations.
-- Use market insights to guide learning priorities.
 
 ---
 
