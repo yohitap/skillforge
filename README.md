@@ -20,22 +20,14 @@ SkillForge connects career goals with measurable skill development.
 It helps users understand their current capabilities, identify missing skills, collect evidence of what they can do, and organize their learning into actionable steps.
 
 ## Key Features
-
-### 1. Intelligent Skill Mapping
-
-### 2. Skill Gap Analysis
-
-### 3. Evidence-Based Skill Profiles
-
-### 4. Resume Analysis
-
-### 5. GitHub Project Analysis
-
-### 6. Personalized Learning Roadmaps
-
-### 7. Assessments and Progress Tracking
-
-### 8. Career Insights and Recommendations
+1. Intelligent Skill Mapping
+2. Skill Gap Analysis
+3. Evidence-Based Skill Profiles
+4. Resume Analysis
+5. GitHub Project Analysis
+6. Personalized Learning Roadmaps
+7. Assessments and Progress Tracking
+8. Career Insights and Recommendations
 
 ---
 
