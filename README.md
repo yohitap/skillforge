@@ -216,10 +216,6 @@ Contributions, bug reports, and feature suggestions are welcome.
 3. Make your changes and add relevant tests.
 4. Submit a pull request describing your changes.
 
-## License
-
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
-
 ---
 
 **SkillForge — Learn with purpose. Build with evidence. Grow with direction.**
